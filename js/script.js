@@ -1,24 +1,28 @@
-AFRAME.registerComponent('update-score-text', {
-    schema: {type: 'string'
-        
-    },
 
-    init: function () {
-      // Do something when component first attached.
-      var stringToPrint = this.data;
-      var textBox = document.querySelector("#scoreText");
-      textBox.setAttribute('value', stringToPrint);
-    },
+window.addEventListener('DOMContentLoaded', () => {
+const treasure = document.querySelector('#Treasure');
+const key = document.querySelector('#dodad');
+const House = document.querySelector('#House');
+const decoy = document.querySelector('#Decoy');
+const door = document.querySelector('#Door')
 
-    update: function () {
-      // Do something when component's data is updated.
-    },
 
-    remove: function () {
-      // Do something the component or its entity is detached.
-    },
+var keyFound = false;
 
-    tick: function (time, timeDelta) {
-      // Do something on every scene tick or frame.
-    }
+key.addEventListener('click', () => {
+keyFound = true;
+alert('You have found the key, now find the Lock');
+treasure.setAttribute('visible', true);
+decoy.setAttribute('visible', false);
+});
+
+treasure.addEventListener('click', () => {
+if (keyFound) {
+alert('You have unlocked the Door');
+door.setAttribute('visible', false)
+treasure.setAttribute('visible', false);
+} else {
+alert('There is nothing here');
+}
+});
 });
